@@ -7,6 +7,7 @@ export async function SubmitFeedback(req: Request, res: Response) {
     const userId = req.userId;
     if (!userId) {
       res.status(401).json({ message: "Unauthorized" });
+      return;
     }
 
     const { feedbackText, rating, customerEmail, customerName } =
@@ -19,8 +20,14 @@ export async function SubmitFeedback(req: Request, res: Response) {
       customerEmail,
       customerName,
     });
+
     await feedback.populate("userId", "username");
+
+    res
+      .status(201)
+      .json({ message: "Feedback submitted successfully", feedback });
   } catch (error: any) {
+    console.error("Error in SubmitFeedback:", error);
     res.status(400).json({ message: error.message });
   }
 }
@@ -30,11 +37,14 @@ export async function RequestFeedback(req: Request, res: Response) {
     const userId = req.userId;
     if (!userId) {
       res.status(401).json({ message: "Unauthorized" });
+      return;
     }
 
     const feedback = await Feedback.find({ userId });
+
     res.json(feedback);
   } catch (error: any) {
+    console.error("Error in RequestFeedback:", error);
     res.status(400).json({ message: error.message });
   }
 }

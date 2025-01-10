@@ -1,7 +1,7 @@
 import express from "express";
 import dbConnect from "./db/db";
 import { userRouter } from "./routes/user";
-// import { feedbackRouter } from "./routes/feedback";
+import { feedbackRouter } from "./routes/feedback";
 
 import cors from "cors";
 import dotenv from "dotenv";
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/v1/user", userRouter);
-// app.use("/api/v1/contents", feedbackRouter);
+app.use("/api/v1/feedback", feedbackRouter);
 
 // app.get("/", (req, res) => {
 //   res.sendFile(__dirname + "/index.html");
