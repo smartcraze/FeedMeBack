@@ -77,3 +77,6 @@ We welcome open-source contributions! If you're interested in contributing, plea
 - Write tests for new features or bug fixes.
 - Be respectful and constructive in all discussions and contributions.
 
+### **Notion link**
+https://www.notion.so/feedmeback-17678b1111b480be9c03d80e0870efef?pvs=4
+
