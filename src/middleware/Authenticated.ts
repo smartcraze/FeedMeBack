@@ -13,7 +13,31 @@ function auth(req: Request, res: Response, next: NextFunction) {
     }
 
     req.userId = decode.id;
-    
+
+    next();
+  } else {
+    res.status(403).json({
+      message: "You are not logged in",
+    });
+  }
+}
+
+export function AdminMiddleware(req: Request, res: Response, next: NextFunction) {
+  const header = req.headers["authorization"];
+  const decode = jwt.verify(
+    header as string,
+    process.env.JWT_ADMIN_SECRET as string
+  );
+  if (decode) {
+    if (typeof decode === "string") {
+      res.status(403).json({
+        Message: "You are not loged In",
+      });
+      return;
+    }
+
+    req.AdminId = decode.id;
+
     next();
   } else {
     res.status(403).json({

@@ -1,20 +1,26 @@
 import { Router } from "express";
-import { companyLogin, companySignup, getCompanyDetails, getCompanyFeedback } from "../controller/Admin/AdminController";
+import {
+  CompanyLogin,
+  CompanySignup,
+  GetCompanyDetails,
+  getCompanyFeedback,
+} from "../controller/Admin/AdminController";
+import { AdminMiddleware } from "../middleware/Authenticated";
 
 export const AdminRouter = Router();
 
-// high demands
+// Public Routes
+AdminRouter.post("/signup", CompanySignup);
+AdminRouter.post("/login", CompanyLogin);
+// authenticated
+AdminRouter.get("/details", AdminMiddleware, GetCompanyDetails);
 
-AdminRouter.post("/signup", companySignup);
-AdminRouter.post("/login", companyLogin);
-AdminRouter.get("/:companyId", getCompanyDetails);
-AdminRouter.get("/:companyId/feedback", getCompanyFeedback);
+AdminRouter.get("/feedback", AdminMiddleware, getCompanyFeedback);
 
-// yet to complete
-// optional
-// AdminRouter.get("/me", getCompanyProfile);
-// AdminRouter.put("/me", updateCompanyProfile);
-// AdminRouter.put("/me/password", changeAdminPassword);
-// AdminRouter.get("/search", searchCompanies);
-// AdminRouter.delete("/me", deleteCompany);
-// AdminRouter.delete("/:companyId", deleteCompanyById);
+// Optional Authenticated Routes (Require Admin Middleware)
+// AdminRouter.get("/me", AdminMiddleware, getCompanyProfile);
+// AdminRouter.put("/me", AdminMiddleware, updateCompanyProfile);
+// AdminRouter.put("/me/password", AdminMiddleware, changeAdminPassword);
+// AdminRouter.get("/search", AdminMiddleware, searchCompanies);
+// AdminRouter.delete("/me", AdminMiddleware, deleteCompany);
+// AdminRouter.delete("/:companyId", AdminMiddleware, deleteCompanyById);

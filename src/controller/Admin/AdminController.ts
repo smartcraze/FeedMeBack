@@ -6,6 +6,7 @@ import {
   companyLoginSchema,
   companySchema,
 } from "../../schema/CompaniesSchema";
+import Feedback from "../../model/Feedback";
 
 // Company Signup Controller
 export async function CompanySignup(req: Request, res: Response) {
@@ -16,15 +17,14 @@ export async function CompanySignup(req: Request, res: Response) {
 
     const companyExist = await CompanyAdmin.findOne({ email });
     if (companyExist) {
-      return res.status(403).json({
+      res.status(403).json({
         message: "Company Already Exists",
       });
+      return;
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create the company
     const company = await CompanyAdmin.create({
       name,
       email,
@@ -51,15 +51,16 @@ export async function CompanyLogin(req: Request, res: Response) {
 
     const company = await CompanyAdmin.findOne({ email });
     if (!company) {
-      return res.status(404).json({
+      res.status(404).json({
         message: "Company Not Found",
       });
+      return;
     }
 
     // Compare password
     const isPasswordMatch = await bcrypt.compare(password, company.password);
     if (!isPasswordMatch) {
-      return res.status(400).json({
+      res.status(400).json({
         message: "Incorrect Password",
       });
     }
@@ -85,20 +86,22 @@ export async function CompanyLogin(req: Request, res: Response) {
 // Get Company Details Controller
 export async function GetCompanyDetails(req: Request, res: Response) {
   try {
-    const companyId = req.params.companyId;
+    const companyId = req.AdminId;
 
     if (!companyId) {
-      return res.status(400).json({
-        message: "Company ID is required",
+      res.status(400).json({
+        message: "Company ID is required Admin Should be Authenticated",
       });
+      return;
     }
 
     const company = await CompanyAdmin.findById(companyId);
 
     if (!company) {
-      return res.status(404).json({
+      res.status(404).json({
         message: "Company Not Found",
       });
+      return;
     }
 
     res.status(200).json({
@@ -108,6 +111,41 @@ export async function GetCompanyDetails(req: Request, res: Response) {
         email: company.email,
         website: company.website,
       },
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+}
+
+export async function getCompanyFeedback(req: Request, res: Response) {
+  try {
+    const companyId = req.AdminId;
+
+    if (!companyId) {
+      res.status(400).json({
+        message: "Company ID is required. Admin should be authenticated.",
+      });
+      return;
+    }
+
+    const company = await Feedback.findById(companyId).populate(
+      "userId",
+      "username"
+    );
+
+    if (!company) {
+      res.status(404).json({
+        message: "Company Not Found",
+      });
+      return;
+    }
+
+    res.status(200).json({
+      message: "Company feedback retrieved successfully",
+      feedbacks: company,
     });
   } catch (error: any) {
     res.status(500).json({
