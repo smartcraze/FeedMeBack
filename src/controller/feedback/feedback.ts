@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import feedbackSchemaZod from "../schema/FeedbackSchema";
-import Feedback from "../model/Feedback";
+import feedbackSchemaZod from "../../schema/FeedbackSchema";
+import Feedback from "../../model/Feedback";
 
 export async function SubmitFeedback(req: Request, res: Response) {
   try {

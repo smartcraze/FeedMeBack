@@ -6,6 +6,11 @@ const feedbackSchema = new Schema({
     ref: "User",
     required: true,
   },
+  companyId: {
+    type: Types.ObjectId,
+    ref: "CompanyAdmin",
+    required: true,
+  },
   feedbackText: {
     type: String,
     required: true,

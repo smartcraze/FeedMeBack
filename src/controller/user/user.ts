@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import User from "../model/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { logedinuser, userSchema } from "../schema/userschema";
+import User from "../../model/User";
+import { logedinuser, userSchema } from "../../schema/userschema";
 
 // signup controller
 export async function Register(req: Request, res: Response) {

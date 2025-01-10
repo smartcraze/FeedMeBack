@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 const feedbackSchemaZod = z.object({
+  companyId: z.string(),
   feedbackText: z.string().trim().min(1, "Feedback text is required"),
   rating: z
     .number()
