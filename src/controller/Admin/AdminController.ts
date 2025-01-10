@@ -67,7 +67,7 @@ export async function CompanyLogin(req: Request, res: Response) {
     // Create JWT token
     const token = jwt.sign(
       { id: company._id },
-      process.env.JWT_SECRET as string
+      process.env.JWT_ADMIN_SECRET as string
     );
 
     res.status(200).json({
