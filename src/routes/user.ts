@@ -10,7 +10,7 @@ userRouter.post("/signin", Login);
 userRouter.get("/me", auth, UserDetails);
 
 // yet to complete
-userRouter.put("/me", UpdateProfile);
+// userRouter.put("/me", UpdateProfile);
 // optional
 // userRouter.put("/me/password", ChangePassword);
 // userRouter.delete("/me", DeleteAccount);

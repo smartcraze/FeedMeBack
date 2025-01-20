@@ -18,8 +18,11 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/feedback", feedbackRouter);
 app.use("/api/v1/company", AdminRouter);
 
+console.log(__filename);
+console.log(__dirname);
+
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile("./index.html");
 });
 
 app.listen(3000, () => {
