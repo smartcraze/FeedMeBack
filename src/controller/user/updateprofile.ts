@@ -17,8 +17,7 @@ export async function UpdateProfile(req: Request, res: Response) {
       });
       return;
     }
-    // ask for the details that they have to update
-    // Update only the provided fields
+ 
     if (username) ExistingUser.username = username;
     if (name) ExistingUser.name = name;
     if (email) ExistingUser.email = email;

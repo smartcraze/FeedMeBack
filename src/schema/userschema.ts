@@ -12,7 +12,7 @@ export const logedinuser = z.object({
 });
 
 export const updateProfileZod = z.object({
-  username: z.string(),
+  username: z.string().optional(),
   name: z.string().max(50).optional(),
   email: z.string().email().optional(),
   password: z.string().min(6).max(50).optional(),
