@@ -127,3 +127,12 @@ response
 
 ```
 
+```json
+put http://localhost:3000/api/v1/user/update
+{
+    "name":"suraj vishwakarma",
+    "email": "try.surajv@gmail.com",
+    "username":"smartcraze"
+}
+```
+

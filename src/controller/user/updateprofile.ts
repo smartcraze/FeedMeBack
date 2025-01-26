@@ -10,17 +10,36 @@ export async function UpdateProfile(req: Request, res: Response) {
       req.body
     );
 
-    const ExistingUser = await User.findById({ userId });
+    const ExistingUser = await User.findById(userId);
+
     if (!ExistingUser) {
       res.status(404).json({
         message: "User Not Found",
       });
       return;
     }
- 
-    if (username) ExistingUser.username = username;
+
+    if (username && username !== ExistingUser.username) {
+      const usernameExists = await User.findOne({ username });
+      if (usernameExists) {
+        res.status(400).json({
+          message: "Username already in use",
+        });
+      }
+      ExistingUser.username = username;
+    }
+
+    if (email && email !== ExistingUser.email) {
+      const emailExists = await User.findOne({ email });
+      if (emailExists) {
+        res.status(400).json({
+          message: "Email already in use",
+        });
+      }
+      ExistingUser.email = email;
+    }
+
     if (name) ExistingUser.name = name;
-    if (email) ExistingUser.email = email;
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);
       ExistingUser.password = hashedPassword;

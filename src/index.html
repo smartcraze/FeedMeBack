@@ -4,16 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="A Pure Node.js Backend For FeedMeBack, a small tool for collecting user feedback.">
-    <meta name="keywords" content="smartcraze, feedmeback, feedback, feedback tool, feedback system, suraj vishwkarma">
-    <meta property="og:smartcraze-portfolio" content="Smartcraze.online">
-    <meta property="og:locale" content="en_US">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
-    <title>FeedMeBack Documentation</title>
+    <title>FeedMeBack API Documentation</title>
     <style>
-        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
@@ -22,165 +14,181 @@
 
         body {
             font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #283149, #404b69);
+            color: #f5f5f5;
+            padding: 20px;
             line-height: 1.6;
-            background: linear-gradient(to bottom, #4caf50, #ffffff);
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         header {
-            background: rgba(76, 175, 80, 0.9);
-            color: #fff;
-            padding: 20px 0;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            background: #1f4068;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            margin-bottom: 30px;
         }
 
         header h1 {
             font-size: 2.5rem;
-            margin-bottom: 10px;
         }
 
         header p {
             font-size: 1.2rem;
+            margin-top: 10px;
         }
 
-        main {
-            flex: 1;
-            padding: 20px 0;
-        }
-
-        .docs-section {
-            margin-bottom: 30px;
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
             padding: 20px;
-            background: #f4f4f4;
+            background: #393e46;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         }
 
-        .docs-section ul {
-            list-style: none;
-            padding: 10px;
+        .section {
+            margin-bottom: 30px;
         }
 
-        .docs-section ul li {
-            margin: 10px 0;
+        .section h2 {
+            font-size: 1.8rem;
+            color: #00adb5;
+            margin-bottom: 10px;
         }
 
-        .docs-section ul li a {
-            text-decoration: none;
-            color: #4caf50;
-            font-weight: bold;
-        }
-
-        .docs-section ul li a:hover {
-            text-decoration: underline;
-        }
-
-        section {
+        .route {
             margin-bottom: 20px;
             padding: 15px;
-            background: #e8f5e9;
-            border-left: 5px solid #4caf50;
-            border-radius: 8px;
+            background: #47555e;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
-        section h3 {
-            margin-bottom: 10px;
+        .route h3 {
             font-size: 1.5rem;
+            color: #4deeea;
+        }
+
+        .route p {
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        .route pre {
+            background: #222831;
+            padding: 15px;
+            color: #c3e88d;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         footer {
+            margin-top: 30px;
             text-align: center;
-            background: #4caf50;
-            color: #fff;
-            padding: 15px 0;
-            font-size: 0.9rem;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            background: #1f4068;
+            border-radius: 8px;
+            color: #f5f5f5;
         }
 
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-
-            header p {
-                font-size: 1rem;
-            }
-
-            section h3 {
-                font-size: 1.2rem;
-            }
-
-            .docs-section ul li {
-                margin: 5px 0;
-            }
+        footer a {
+            color: #00adb5;
+            text-decoration: none;
         }
 
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.5rem;
-            }
+        footer a:hover {
+            text-decoration: underline;
+        }
 
-            header p {
-                font-size: 0.9rem;
-            }
+        .promo {
+            margin-top: 20px;
+            padding: 15px;
+            background: #222831;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .promo p {
+            font-size: 1rem;
+        }
+
+        .promo a {
+            color: #4deeea;
+            text-decoration: none;
+        }
+
+        .promo a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <div class="container">
-            <h1>Welcome to FeedMeBack</h1>
-            <p>Your lightweight feedback collection tool.</p>
-        </div>
+        <h1>FeedMeBack API Documentation</h1>
+        <p>Your comprehensive guide to building feedback-driven applications.</p>
     </header>
 
-    <main>
-        <section class="docs-section">
-            <h2>Documentation</h2>
-            <ul>
-                <li><a href="#getting-started">Getting Started</a></li>
-                <li><a href="#api-endpoints">API Endpoints</a></li>
-                <li><a href="#error-handling">Error Handling</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
+    <div class="container">
+        <section class="section">
+            <h2>Introduction</h2>
+            <p>Welcome to the FeedMeBack API documentation. This platform enables you to collect, manage, and analyze
+                user feedback effectively. Below, you'll find details of all available API routes and their usage.
+            </p>
         </section>
 
-        <section id="getting-started">
-            <h3>Getting Started</h3>
-            <p>Documentation coming soon...</p>
+        <section class="section">
+            <h2>User Management Routes</h2>
+
+            <div class="route">
+                <h3>/api/v1/user</h3>
+                <p>Manage user accounts and profiles.</p>
+                <pre>
+GET /api/v1/user - Get user details.
+POST /api/v1/user/signup - Register a new user.
+POST /api/v1/user/login - Login a user.
+PUT /api/v1/user/:id - Update user details.
+DELETE /api/v1/user/:id - Delete a user.
+                </pre>
+            </div>
         </section>
 
-        <section id="api-endpoints">
-            <h3>API Endpoints</h3>
-            <p>Details about the available endpoints coming soon...</p>
+        <section class="section">
+            <h2>Feedback Routes</h2>
+
+            <div class="route">
+                <h3>/api/v1/feedback</h3>
+                <p>Handle feedback submission and retrieval.</p>
+                <pre>
+GET /api/v1/feedback - Retrieve all feedback.
+POST /api/v1/feedback - Submit new feedback.
+GET /api/v1/feedback/:id - Get feedback by ID.
+PUT /api/v1/feedback/:id - Update feedback.
+DELETE /api/v1/feedback/:id - Delete feedback.
+                </pre>
+            </div>
         </section>
 
-        <section id="error-handling">
-            <h3>Error Handling</h3>
-            <p>Error management information coming soon...</p>
-        </section>
+        <section class="section">
+            <h2>Analytics Routes</h2>
 
-        <section id="faq">
-            <h3>Frequently Asked Questions</h3>
-            <p>Answers to common questions coming soon...</p>
+            <div class="route">
+                <h3>/api/v1/analytics</h3>
+                <p>Analyze user feedback and trends.</p>
+                <pre>
+GET /api/v1/analytics/summary - Get summary analytics.
+GET /api/v1/analytics/user/:id - Analytics for a specific user.
+GET /api/v1/analytics/feedback/:id - Analytics for specific feedback.
+                </pre>
+            </div>
         </section>
-    </main>
+    </div>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 FeedMeBack. All Rights Reserved.</p>
-        </div>
+        <p>Developed by <a href="https://yourportfolio.com" target="_blank">Your Name</a>. All Rights Reserved.
+        </p>
     </footer>
 </body>
 

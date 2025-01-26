@@ -12,7 +12,7 @@ export const userRouter = Router();
 userRouter.post("/signup", Register);
 userRouter.post("/signin", Login);
 userRouter.get("/me", auth, UserDetails);
-
 userRouter.put("/update", auth, UpdateProfile);
 userRouter.delete("/delete", auth, DeleteUser);
+
 userRouter.get("/:username", SearchUser);
