@@ -5,11 +5,12 @@ import bcrypt from "bcrypt";
 
 export async function UpdateProfile(req: Request, res: Response) {
   try {
+    const userId = req.userId;
     const { username, name, email, password } = updateProfileZod.parse(
       req.body
     );
 
-    const ExistingUser = await User.findOne({ username });
+    const ExistingUser = await User.findById({ userId });
     if (!ExistingUser) {
       res.status(404).json({
         message: "User Not Found",
@@ -18,6 +19,7 @@ export async function UpdateProfile(req: Request, res: Response) {
     }
     // ask for the details that they have to update
     // Update only the provided fields
+    if (username) ExistingUser.username = username;
     if (name) ExistingUser.name = name;
     if (email) ExistingUser.email = email;
     if (password) {
@@ -32,6 +34,7 @@ export async function UpdateProfile(req: Request, res: Response) {
         username: ExistingUser.username,
         name: ExistingUser.name,
         email: ExistingUser.email,
+        createdAt: ExistingUser.createdAt,
       },
     });
   } catch (error: any) {
