@@ -9,10 +9,10 @@ import { AdminMiddleware } from "../middleware/Authenticated";
 
 export const AdminRouter = Router();
 
-// Public Routes
 AdminRouter.post("/signup", CompanySignup);
 AdminRouter.post("/login", CompanyLogin);
 // authenticated
+
 AdminRouter.get("/details", AdminMiddleware, GetCompanyDetails);
 
 AdminRouter.get("/feedback", AdminMiddleware, getCompanyFeedback);
