@@ -1,4 +1,3 @@
-
 # **Feedback System for Companies and Users**
 
 This repository provides a feedback system allowing companies and users to submit, manage, and embed feedback. It features company and user authentication, company-specific feedback, and a testimonial system where companies can embed feedback on their websites.
@@ -6,16 +5,19 @@ This repository provides a feedback system allowing companies and users to submi
 ## **Features**
 
 - **Company Admin Routes:**
+
   - **Signup & Login:** Register and authenticate companies.
   - **Company Profile:** View, update, or delete company details.
   - **Feedback Management:** Companies can view feedback submitted by users.
   - **Admin Functions:** Change password, search, and delete company profiles.
 
 - **User Routes:**
+
   - **Signup & Login:** Register and authenticate users.
   - **Feedback Submission:** Authenticated users can submit feedback to specific companies.
 
 - **Feedback System:**
+
   - **Company Feedback:** Companies receive feedback from users that can be embedded on their website.
   - **Feedback Retrieval:** Admins and users can view feedback related to a specific company.
 
@@ -60,7 +62,6 @@ To get started with the project, follow these steps:
    npm run dev
    ```
 
-
 ## **Contributing**
 
 We welcome open-source contributions! If you're interested in contributing, please follow these steps:
@@ -78,5 +79,51 @@ We welcome open-source contributions! If you're interested in contributing, plea
 - Be respectful and constructive in all discussions and contributions.
 
 ### **Notion link**
+
 https://www.notion.so/feedmeback-17678b1111b480be9c03d80e0870efef?pvs=4
+
+# All EndPoints
+
+```json
+post  http://localhost:3000/api/v1/user/signup
+{
+    "name":"suraj vishwakarma",
+    "username":"suraj9880",
+    "email":"try.example@gmail.com",
+    "password":"fuckyou"
+}
+```
+
+```json
+
+post   http://localhost:3000/api/v1/user/signin
+body:
+{
+    "username":"suraj9880",
+    "password":"fuckyou"
+}
+
+response
+{
+  "Message":"User Logged In",
+  "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTY2MTU4NzI5MDFkMjJkMWE4OTFlZiIsImlhdCI6MTczNzkwODg3MX0.wsji-B2bJu-YyiWF1_eYyioVpa8fZBMbRzjSAGmUMT0"
+}
+
+```
+```json
+get http://localhost:3000/api/v1/user/me
+[authorisation] headers
+response
+
+{
+    "message": "User details retrieved successfully",
+    "user": {
+        "name": "suraj vishwakarma",
+        "email": "try.surajv@gmail.com",
+        "username": "suraj9880",
+        "createdAt": "2025-01-26T16:22:48.870Z"
+    }
+}
+
+```
 
