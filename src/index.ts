@@ -18,9 +18,9 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/feedback", feedbackRouter);
 app.use("/api/v1/company", AdminRouter);
 
-app.get("/", (req, res) => {
-  res.sendFile("./index.html");
-});
+// app.get("/", (req, res) => {
+//   res.sendFile("./index.html");
+// });
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
